@@ -11,22 +11,6 @@ library(forecast)
 library(lubridate)
 suppressMessages(library(memisc, warn.conflicts = FALSE, quietly=TRUE))
 
-# Colors
-orange = "#F56400"
-light_orange = "#FF9566"
-dark_orange = "#B73C24"
-blue = "#34A8C4"
-light_blue = "#CCE9F0"
-other_light_blue = "#65C0FF"
-green = "#7AC142"
-yellow = "#FFCF5C"
-purple = "#C788CE"
-rose = "#EAC1BE"
-almond = "#F2D0B8"
-lightest_blue = "#F0FBFD"
-lightest_orange = "#FFEFE8"
-nacho = "#FFA300"
-error_red = "#de473c"
 ```
 
 ## 1.Introduction
@@ -43,7 +27,9 @@ To accomplish this, we first split our dataset into training and test datasets. 
 
 All forecasts in this exercise are implemented using the 'forecast' package in R.
 
-## 2.1 Dataset Preparation
+## Forecasting Steps
+
+### 2.1 Dataset Preparation
 
 ```{r load_data, echo=FALSE, message=FALSE, warning=FALSE} 
 suppressMessages(library(memisc, warn.conflicts = FALSE, quietly=TRUE))
@@ -71,7 +57,7 @@ title("Historical Bidirectional Car Traffic Through The Sion-Lausanne Tunnel", l
 
 ```
 
-#### 2.2 Model Training and Validation
+### 2.2 Model Training and Validation
 To identify the best performing model, data from the latest full year (2005-02-11 to 2006-02-10) is excluded from model training as a hold-out set. The data for 2002-07-01 to 2005-02-10 is used to train three different time series prediction models -- TBATS, ARIMA and Neural Networks -- and the models are used to make predictions for 2005-02-11 to 2006-02-10. The chart below shows the predictions made by each model for that time period.
 
 ```{r model_training, echo=FALSE, message=FALSE, warning=FALSE}
@@ -214,7 +200,7 @@ plot(fit_tbats, cex.main=1, xlab='', mgp = c(2, 1, 0), main = '')
 title("Decomposition by TBATS model", line = 1.1, cex.main=1)
 ```
 
-#### 2.3 Predicting Car Traffic For The Rest of 2006
+### 2.3 Predicting Car Traffic For The Rest of 2006
 
 Since the TBATS model showed the highest degree of accuracy and interpretability, it is used to make the forecast for car traffic for the rest of 2006. The TBATS model was retrained on all data (2002-07-01 -- 2006-02-10), and a forecast was made for the remainder of 2006. The chart below shows the forecast. 
 
@@ -262,16 +248,12 @@ diff_yoy <- round(((all_cars_2006_sum / traffic_2005_sum) - 1) * 100, 2)
 
 The model predicts that $`r I(cars_forecasts_remainder_2006_sum_print)`$ cars will pass through the Sion-Lausanne tunnel in the remainder of 2006, making for a total of $`r I(all_cars_2006_sum_print)`$ cars passing through the tunnel in 2006. In 2005, $`r I(traffic_2005_sum)`$ cars passed through the tunnel, meaning that the number of cars to pass through the Sion-Lausanne tunnel is expected to decrease by $`r I(diff_yoy)`$% in 2006 compared to 2005.
 
-
-
 ### 3. References
 
 1. [Forecasting time series with complex seasonal patterns using exponential smoothing; Alysha M De Livera, Rob J Hyndman and Ralph D Snyder](http://robjhyndman.com/papers/ComplexSeasonality.pdf)
 2. [forecast package in R](https://cran.r-project.org/web/packages/forecast/index.html)
+3. Tunnel image credit: https://www.autobahnen.ch/images/pic00823.jpg
 
 
 ### Links
-[R code]()
-
-add image credit link
-2. add github code
+[Github repo link](https://github.com/bulam/time_series_forecasting_cars)
