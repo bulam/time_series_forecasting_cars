@@ -41,6 +41,8 @@ knitr::include_graphics("tunnel.jpg")
 
 To accomplish this, we first split our dataset into training and test datasets. Then, we build a number of forecasting models (TBATS, ARIMA, Neural Networks) using the training dataset and compare their performances against the test dataset. We show that the TBATS^[TBATS, short for Trigonometric Box-Cox transform, ARMA errors, Trend, and Seasonal components. For more information: Forecasting time series with complex seasonal patterns using exponential smoothing; Alysha M De Livera, Rob J Hyndman and Ralph D Snyder] model had the highest degree of accuracy. We then make a forecast using the TBATS model of car traffic to pass through the tunnel in the remainder of year 2006, and calculate the forecasted year over year change in car traffic.
 
+All forecasts in this exercise are implemented using the 'forecast' package in R.
+
 ## 2.1 Dataset Preparation
 
 ```{r load_data, echo=FALSE, message=FALSE, warning=FALSE} 
@@ -271,4 +273,5 @@ The model predicts that $`r I(cars_forecasts_remainder_2006_sum_print)`$ cars wi
 ### Links
 [R code]()
 
+add image credit link
 2. add github code
